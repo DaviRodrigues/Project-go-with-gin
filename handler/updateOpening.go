@@ -29,6 +29,20 @@ func validateAndUpdateFields(opening *schemas.Opening, request UpdateOpeningRequ
 	}
 }
 
+// @BasePath /api/v1
+
+// @Summary Update opening
+// @Description Update a job opening by ID
+// @Tags Openings
+// @Accept json
+// @Produce json
+// @Param id query string true "Opening ID"
+// @Param request body UpdateOpeningRequest true "Request body"
+// @Success 200 {object} OpeningResponse
+// @Failure 400 {object} ErrorReponse
+// @Failure 404 {object} ErrorReponse
+// @Failure 500 {object} ErrorReponse
+// @Router /opening [put]
 func UpdateOpeningHandler(ctx *gin.Context) {
 	var request UpdateOpeningRequest
 
