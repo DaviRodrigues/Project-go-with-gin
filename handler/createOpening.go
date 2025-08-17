@@ -8,7 +8,7 @@ import (
 )
 
 func CreateOpeningHandler(ctx *gin.Context) {
-	request := CreateOpeningRequest{}
+	var request CreateOpeningRequest
 
 	if err := ctx.ShouldBindJSON(&request); err != nil {
 		logger.Errorf("bad formmated json: %v", err.Error())
@@ -16,7 +16,9 @@ func CreateOpeningHandler(ctx *gin.Context) {
 		return
 	}
 
-	if err := request.Validate(); err != nil {
+	var openingReq OpeningRequest = &request
+
+	if err := openingReq.Validate(); err != nil {
 		logger.Errorf("validation error: %v", err.Error())
 		sendError(ctx, http.StatusBadRequest, err.Error())
 		return
