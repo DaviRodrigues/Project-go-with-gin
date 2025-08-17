@@ -16,8 +16,6 @@ func CreateOpeningHandler(ctx *gin.Context) {
 		return
 	}
 
-	ctx.BindJSON(&request)
-
 	if err := request.Validate(); err != nil {
 		logger.Errorf("validation error: %v", err.Error())
 		sendError(ctx, http.StatusBadRequest, err.Error())
